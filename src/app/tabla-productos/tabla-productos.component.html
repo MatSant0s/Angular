@@ -1,11 +1,10 @@
 <div class="principal">
   <div class="form">
-    <!-- Logo superior -->
     <div class="logo-header">
       <img src="https://bolsadequito.com/images/2018/06/05/LOGO-BANCO-PICHINCHA-min.jpg" alt="Logo TCS">
     </div>
 
-    <!-- Botón para abrir el modal -->
+    <!-- Boton agregar -->
     <div style="display: flex; justify-content: flex-end;">
       <button (click)="abrirModal()">Agregar</button>
     </div>
@@ -42,7 +41,6 @@
       </tbody>
     </table>
 
-    <!-- Footer -->
     <div class="tabla-footer">
       <div>
         Mostrando {{ productosFiltrados.length }} resultado{{ productosFiltrados.length === 1 ? '' : 's' }}.
@@ -57,10 +55,8 @@
       </div>
     </div>
 
-    <!-- Modal -->
     <div class="modal" *ngIf="mostrarModal">
       <div class="modal-content">
-        <!-- Botón para cerrar el modal en forma de "X" -->
         <button class="close-btn" (click)="cerrarModal()">X</button>
 
         <h3>Agregar nuevo producto</h3>
@@ -99,7 +95,6 @@
             </div>
           </div>
 
-          <!-- Mostrar errores de validación -->
           <div *ngIf="errores.length > 0" class="errores">
             <ul>
               <li *ngFor="let error of errores" style="color: red;">{{ error }}</li>

@@ -94,32 +94,27 @@ export class TablaProductosComponent implements OnInit {
       this.errores.push('El logo es requerido.');
     }
 
-    // Fechas
+ 
     const fechaLib = new Date(this.nuevoProducto.fechaLiberacion);
     const fechaRev = new Date(this.nuevoProducto.fechaReestructuracion);
     const hoy = new Date();
-    hoy.setHours(0, 0, 0, 0);  // Eliminamos la hora de la fecha actual
+    hoy.setHours(0, 0, 0, 0); 
 
-    // Establecer la fecha mínima para la fecha de liberación: mañana
     const manana = new Date(hoy);
-    manana.setDate(hoy.getDate() + 1);  // Incrementamos un día para obtener mañana
-    manana.setHours(0, 0, 0, 0);  // Establecemos la hora a 00:00:00 para comparar solo la fecha
+    manana.setDate(hoy.getDate() + 1);  
+    manana.setHours(0, 0, 0, 0);  
 
-    // Establecer un año después para la fecha de reestructuración
     const unAnioDespues = new Date(fechaLib);
     unAnioDespues.setFullYear(unAnioDespues.getFullYear() + 1);
     
-    // Eliminar la hora de la fecha de reestructuración
     fechaRev.setHours(0, 0, 0, 0);
 
-    // Validación de la fecha de liberación
     if (!this.nuevoProducto.fechaLiberacion) {
       this.errores.push('La fecha de liberación es requerida.');
     } else if (fechaLib < manana) {
       this.errores.push('La fecha de liberación debe ser igual o mayor a mañana.');
     }
 
-    // Validación de la fecha de reestructuración
     if (!this.nuevoProducto.fechaReestructuracion) {
       this.errores.push('La fecha de reestructuración es requerida.');
     } else if (fechaRev.toDateString() !== unAnioDespues.toDateString()) {
@@ -134,13 +129,13 @@ export class TablaProductosComponent implements OnInit {
       this.productService.addProducto(this.nuevoProducto).subscribe(() => {
         this.mostrarModal = false;
         this.reiniciarFormulario();
-        this.ngOnInit();  // recargar productos
+        this.ngOnInit();  
       });
     }
   }
 
   cerrarModal() {
-    this.mostrarModal = false;  // Esto cierra el modal
+    this.mostrarModal = false;  
   }
 
 }
