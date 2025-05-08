@@ -5,32 +5,40 @@
       "nombre": "Producto A",
       "descripcion": "Descripción del producto A",
       "logo": "https://via.placeholder.com/40",
-      "fechaLiberacion": "2022-05-1",
-      "fechaReestructuracion": "2024-01-01"
+      "fechaLiberacion": "2025-05-10",
+      "fechaReestructuracion": "2026-05-10"
     },
     {
       "id": "2",
       "nombre": "Producto B",
       "descripcion": "Descripción del producto B",
       "logo": "https://via.placeholder.com/40",
-      "fechaLiberacion": "2021-06-15",
-      "fechaReestructuracion": "2025-11-2"
+      "fechaLiberacion": "2025-06-01",
+      "fechaReestructuracion": "2026-06-01"
     },
     {
-      "id": "3",
+      "id": "321",
+      "logo": "https://www.jgholdings.co.za/wp-content/uploads/2021/09/cropped-cropped-LOGO3.png",
       "nombre": "Producto C",
-      "descripcion": "Descripción del producto C",
-      "logo": "https://via.placeholder.com/40",
-      "fechaLiberacion": "2015-11-11",
-      "fechaReestructuracion": "2025-09-21"
+      "descripcion": "PRODUCTO C",
+      "fechaLiberacion": "2025-05-09",
+      "fechaReestructuracion": "2026-05-09"
     },
     {
-      "id": 4,
+      "id": "433",
       "logo": "https://www.jgholdings.co.za/wp-content/uploads/2021/09/cropped-cropped-LOGO3.png",
       "nombre": "Producto D",
-      "descripcion": "D",
-      "fechaLiberacion": "2025-05-08",
-      "fechaReestructuracion": "2025-05-09"
+      "descripcion": "Producto D",
+      "fechaLiberacion": "2025-05-09",
+      "fechaReestructuracion": "2026-05-09"
+    },
+    {
+      "id": "411",
+      "logo": "https://www.jgholdings.co.za/wp-content/uploads/2021/09/cropped-cropped-LOGO3.png",
+      "nombre": "Producto m",
+      "descripcion": "prosduct m",
+      "fechaLiberacion": "2025-05-11",
+      "fechaReestructuracion": "2026-05-11"
     }
   ]
 }
