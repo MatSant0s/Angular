@@ -1,32 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ProductService } from '../services/product.service';  // Asegúrate de tener el servicio correcto
+import { ProductService } from '../services/product.service';
 import { Producto } from '../model/product.model';
 
 @Component({
   selector: 'app-tabla-productos',
-  standalone: true,  // Marca el componente como standalone
-  imports: [CommonModule, FormsModule, HttpClientModule],  // Importa los módulos necesarios
+  standalone: true,
+  imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './tabla-productos.component.html',
   styleUrls: ['./tabla-productos.component.css'],
-  providers: [ProductService]  // Asegúrate de que el servicio esté disponible
+  providers: [ProductService]
 })
-export class TablaProductosComponent {
+export class TablaProductosComponent implements OnInit {
   searchText: string = '';
   registrosPorPagina: number = 5;
   productos: Producto[] = [];
+
+  mostrarModal: boolean = false;
+
+  nuevoProducto: Producto = {
+    id: 0,
+    logo: '',
+    nombre: '',
+    descripcion: '',
+    fechaLiberacion: '',
+    fechaReestructuracion: ''
+  };
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.productService.getProductos().subscribe((data: Producto[]) => {
-      this.productos = data.map(p => ({
-        ...p,
-        fechaLiberacion: new Date(p.fechaLiberacion),
-        fechaReestructuracion: new Date(p.fechaReestructuracion)
-      }));
+      this.productos = data;
     });
   }
 
@@ -40,5 +47,28 @@ export class TablaProductosComponent {
 
   get productosPorPagina() {
     return this.productosFiltrados.slice(0, this.registrosPorPagina);
+  }
+
+  abrirModal() {
+    this.mostrarModal = true;
+  }
+
+  reiniciarFormulario() {
+    this.nuevoProducto = {
+      id: 0,
+      logo: '',
+      nombre: '',
+      descripcion: '',
+      fechaLiberacion: '',
+      fechaReestructuracion: ''
+    };
+  }
+
+  enviarProducto() {
+    this.productService.addProducto(this.nuevoProducto).subscribe(() => {
+      this.mostrarModal = false;
+      this.reiniciarFormulario();
+      this.ngOnInit();  // recargar productos
+    });
   }
 }

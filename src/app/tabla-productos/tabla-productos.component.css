@@ -1,125 +1,210 @@
 /* Contenedor principal */
 .principal {
-    background-color: #d4d5d638;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
-    max-width: 800px;
-    margin: 0 auto;
-    box-sizing: border-box;
-    width: 90%;
-  }
-  
-  /* Caja de la tabla y controles */
-  .form {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 6px;
-    font-size: 13px;
-    width: 90%;
-    max-width: 700px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    font-weight: 400;
-    margin: 20px auto;
-    text-align: center;
-    overflow-x: auto;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-  
-  /* Logo centrado arriba */
-  .logo-header {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .logo-header img {
-    height: 100px;
-    max-width: 100%;
-    object-fit: contain;
-  }
-  
-  /* Input de búsqueda */
-  input[type="text"] {
-    width: 100%;
-    max-width: 400px;
-    padding: 10px 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: border 0.3s;
-  }
-  
-  input[type="text"]:focus {
-    border-color: #070030;
-    outline: none;
-  }
-  
-  /* Tabla de productos */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-    color: #333;
-    margin-top: 10px;
-  }
-  
-  /* Cabecera clara y limpia */
-  thead tr {
-    background-color: #f0f0f0;
-    color: #000;
-    font-weight: 500;
-  }
-  
-  /* Celdas sin bordes verticales */
-  th, td {
-    padding: 12px 16px;
-    border-bottom: 1px solid #e0e0e0;
-    text-align: left;
-  }
-  
-  /* Hover fila */
-  tbody tr:hover {
-    background-color: #f4f6fa;
-  }
-  
-  /* Logo del producto */
-  td img {
-    border-radius: 6px;
-    height: 40px;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Footer con select y contador */
+  background-color: #d4d5d638;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+  max-width: 800px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 90%;
+}
+
+/* Caja de la tabla y controles */
+.form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 6px;
+  font-size: 13px;
+  width: 90%;
+  max-width: 700px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-weight: 400;
+  margin: 20px auto;
+  text-align: center;
+  overflow-x: auto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Logo centrado arriba */
+.logo-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo-header img {
+  height: 100px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Input de búsqueda */
+input[type="text"], input[type="number"], input[type="date"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus {
+  border-color: #070030;
+  outline: none;
+}
+
+/* Tabla de productos */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  color: #333;
+  margin-top: 10px;
+}
+
+/* Cabecera clara y limpia */
+thead tr {
+  background-color: #f0f0f0;
+  color: #000;
+  font-weight: 500;
+}
+
+/* Celdas sin bordes verticales */
+th, td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+}
+
+/* Hover fila */
+tbody tr:hover {
+  background-color: #f4f6fa;
+}
+
+/* Logo del producto */
+td img {
+  border-radius: 6px;
+  height: 40px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer con select y contador */
+.tabla-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: #444;
+  flex-wrap: wrap;
+}
+
+/* Select estilizado */
+select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 13px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
   .tabla-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    font-size: 13px;
-    color: #444;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
-  
-  /* Select estilizado */
-  select {
-    padding: 6px 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    font-size: 13px;
+
+  input[type="text"],
+  input[type="number"],
+  input[type="date"] {
+    width: 100%;
   }
-  
-  /* Responsive */
-  @media (max-width: 600px) {
-    .tabla-footer {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-    }
-  
-    input[type="text"] {
-      width: 100%;
-    }
+
+  .form-row {
+    flex-direction: column;
   }
-  
+
+  .modal-content {
+    width: 90%;
+  }
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 30px;
+  width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  text-align: left;
+}
+
+/* Estilo de formulario en columnas */
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Inputs más pequeños y centrados */
+.form-group input {
+  width: 90%;
+  align-self: center;
+}
+
+/* Etiquetas */
+.form-group label {
+  margin-bottom: 4px;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.modal-buttons button {
+  padding: 8px 16px;
+  border: none;
+  background-color: #070030;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s;
+}
+
+.modal-buttons button:hover {
+  background-color: #2a2a6d;
+}

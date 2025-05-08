@@ -1,7 +1,7 @@
 {
   "productos": [
     {
-      "id": 1,
+      "id": "1",
       "nombre": "Producto A",
       "descripcion": "Descripción del producto A",
       "logo": "https://via.placeholder.com/40",
@@ -9,20 +9,28 @@
       "fechaReestructuracion": "2024-01-01"
     },
     {
-      "id": 2,
+      "id": "2",
       "nombre": "Producto B",
       "descripcion": "Descripción del producto B",
       "logo": "https://via.placeholder.com/40",
       "fechaLiberacion": "2021-06-15",
       "fechaReestructuracion": "2025-11-2"
-    }, 
+    },
     {
-      "id": 3,
+      "id": "3",
       "nombre": "Producto C",
       "descripcion": "Descripción del producto C",
       "logo": "https://via.placeholder.com/40",
       "fechaLiberacion": "2015-11-11",
       "fechaReestructuracion": "2025-09-21"
+    },
+    {
+      "id": 4,
+      "logo": "https://www.jgholdings.co.za/wp-content/uploads/2021/09/cropped-cropped-LOGO3.png",
+      "nombre": "Producto D",
+      "descripcion": "D",
+      "fechaLiberacion": "2025-05-08",
+      "fechaReestructuracion": "2025-05-09"
     }
   ]
 }

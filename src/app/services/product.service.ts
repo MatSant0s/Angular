@@ -7,11 +7,15 @@ import { Producto } from '../model/product.model';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:3000/productos';  // Asegúrate de que este sea el endpoint correcto
+  private apiUrl = 'http://localhost:3000/productos';  // ruta al json-server
 
   constructor(private http: HttpClient) {}
 
   getProductos(): Observable<Producto[]> {
     return this.http.get<Producto[]>(this.apiUrl);
+  }
+
+  addProducto(producto: Producto): Observable<Producto> {
+    return this.http.post<Producto>(this.apiUrl, producto);
   }
 }
