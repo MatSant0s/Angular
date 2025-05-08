@@ -1,0 +1,28 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Producto A",
+      "descripcion": "Descripción del producto A",
+      "logo": "https://via.placeholder.com/40",
+      "fechaLiberacion": "2022-05-1",
+      "fechaReestructuracion": "2024-01-01"
+    },
+    {
+      "id": 2,
+      "nombre": "Producto B",
+      "descripcion": "Descripción del producto B",
+      "logo": "https://via.placeholder.com/40",
+      "fechaLiberacion": "2021-06-15",
+      "fechaReestructuracion": "2025-11-2"
+    }, 
+    {
+      "id": 3,
+      "nombre": "Producto C",
+      "descripcion": "Descripción del producto C",
+      "logo": "https://via.placeholder.com/40",
+      "fechaLiberacion": "2015-11-11",
+      "fechaReestructuracion": "2025-09-21"
+    }
+  ]
+}

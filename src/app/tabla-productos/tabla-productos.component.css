@@ -1,0 +1,125 @@
+/* Contenedor principal */
+.principal {
+    background-color: #d4d5d638;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+    max-width: 800px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    width: 90%;
+  }
+  
+  /* Caja de la tabla y controles */
+  .form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 6px;
+    font-size: 13px;
+    width: 90%;
+    max-width: 700px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    font-weight: 400;
+    margin: 20px auto;
+    text-align: center;
+    overflow-x: auto;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  /* Logo centrado arriba */
+  .logo-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .logo-header img {
+    height: 100px;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  
+  /* Input de búsqueda */
+  input[type="text"] {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border 0.3s;
+  }
+  
+  input[type="text"]:focus {
+    border-color: #070030;
+    outline: none;
+  }
+  
+  /* Tabla de productos */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    color: #333;
+    margin-top: 10px;
+  }
+  
+  /* Cabecera clara y limpia */
+  thead tr {
+    background-color: #f0f0f0;
+    color: #000;
+    font-weight: 500;
+  }
+  
+  /* Celdas sin bordes verticales */
+  th, td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+  }
+  
+  /* Hover fila */
+  tbody tr:hover {
+    background-color: #f4f6fa;
+  }
+  
+  /* Logo del producto */
+  td img {
+    border-radius: 6px;
+    height: 40px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Footer con select y contador */
+  .tabla-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #444;
+    flex-wrap: wrap;
+  }
+  
+  /* Select estilizado */
+  select {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 13px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .tabla-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  
+    input[type="text"] {
+      width: 100%;
+    }
+  }
+  
