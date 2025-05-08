@@ -1,8 +1,8 @@
 export interface Producto {
-  id: number;
+  id: string;
   logo: string;
   nombre: string;
   descripcion: string;
-  fechaLiberacion: string;         // Ahora es string
-  fechaReestructuracion: string;   // También string
+  fechaLiberacion: string;
+  fechaReestructuracion: string;
 }

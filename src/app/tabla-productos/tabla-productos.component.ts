@@ -19,9 +19,10 @@ export class TablaProductosComponent implements OnInit {
   productos: Producto[] = [];
 
   mostrarModal: boolean = false;
+  errores: string[] = [];
 
   nuevoProducto: Producto = {
-    id: 0,
+    id: '',
     logo: '',
     nombre: '',
     descripcion: '',
@@ -51,24 +52,95 @@ export class TablaProductosComponent implements OnInit {
 
   abrirModal() {
     this.mostrarModal = true;
+    this.errores = [];
   }
 
   reiniciarFormulario() {
     this.nuevoProducto = {
-      id: 0,
+      id: '',
       logo: '',
       nombre: '',
       descripcion: '',
       fechaLiberacion: '',
       fechaReestructuracion: ''
     };
+    this.errores = [];
+  }
+
+  validarProducto(): boolean {
+    this.errores = [];
+
+    // Validación ID
+    if (!this.nuevoProducto.id) {
+      this.errores.push('El ID es requerido.');
+    } else if (this.nuevoProducto.id.length < 3 || this.nuevoProducto.id.length > 10) {
+      this.errores.push('El ID debe tener entre 3 y 10 caracteres.');
+    } else if (this.productos.some(p => p.id.toString() === this.nuevoProducto.id.toString())) {
+      this.errores.push('El ID ya existe.');
+    }
+
+    // Nombre
+    if (!this.nuevoProducto.nombre || this.nuevoProducto.nombre.length < 5 || this.nuevoProducto.nombre.length > 100) {
+      this.errores.push('El nombre debe tener entre 5 y 100 caracteres.');
+    }
+
+    // Descripción
+    if (!this.nuevoProducto.descripcion || this.nuevoProducto.descripcion.length < 10 || this.nuevoProducto.descripcion.length > 200) {
+      this.errores.push('La descripción debe tener entre 10 y 200 caracteres.');
+    }
+
+    // Logo
+    if (!this.nuevoProducto.logo) {
+      this.errores.push('El logo es requerido.');
+    }
+
+    // Fechas
+    const fechaLib = new Date(this.nuevoProducto.fechaLiberacion);
+    const fechaRev = new Date(this.nuevoProducto.fechaReestructuracion);
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);  // Eliminamos la hora de la fecha actual
+
+    // Establecer la fecha mínima para la fecha de liberación: mañana
+    const manana = new Date(hoy);
+    manana.setDate(hoy.getDate() + 1);  // Incrementamos un día para obtener mañana
+    manana.setHours(0, 0, 0, 0);  // Establecemos la hora a 00:00:00 para comparar solo la fecha
+
+    // Establecer un año después para la fecha de reestructuración
+    const unAnioDespues = new Date(fechaLib);
+    unAnioDespues.setFullYear(unAnioDespues.getFullYear() + 1);
+    
+    // Eliminar la hora de la fecha de reestructuración
+    fechaRev.setHours(0, 0, 0, 0);
+
+    // Validación de la fecha de liberación
+    if (!this.nuevoProducto.fechaLiberacion) {
+      this.errores.push('La fecha de liberación es requerida.');
+    } else if (fechaLib < manana) {
+      this.errores.push('La fecha de liberación debe ser igual o mayor a mañana.');
+    }
+
+    // Validación de la fecha de reestructuración
+    if (!this.nuevoProducto.fechaReestructuracion) {
+      this.errores.push('La fecha de reestructuración es requerida.');
+    } else if (fechaRev.toDateString() !== unAnioDespues.toDateString()) {
+      this.errores.push('La fecha de reestructuración debe ser exactamente un año después de la fecha de liberación.');
+    }
+
+    return this.errores.length === 0;
   }
 
   enviarProducto() {
-    this.productService.addProducto(this.nuevoProducto).subscribe(() => {
-      this.mostrarModal = false;
-      this.reiniciarFormulario();
-      this.ngOnInit();  // recargar productos
-    });
+    if (this.validarProducto()) {
+      this.productService.addProducto(this.nuevoProducto).subscribe(() => {
+        this.mostrarModal = false;
+        this.reiniciarFormulario();
+        this.ngOnInit();  // recargar productos
+      });
+    }
   }
+
+  cerrarModal() {
+    this.mostrarModal = false;  // Esto cierra el modal
+  }
+
 }

@@ -1,19 +1,21 @@
 <div class="principal">
   <div class="form">
-
     <!-- Logo superior -->
     <div class="logo-header">
       <img src="https://bolsadequito.com/images/2018/06/05/LOGO-BANCO-PICHINCHA-min.jpg" alt="Logo TCS">
     </div>
 
     <!-- Botón para abrir el modal -->
-    <button (click)="abrirModal()">Agregar producto</button>
+    <div style="display: flex; justify-content: flex-end;">
+      <button (click)="abrirModal()">Agregar</button>
+    </div>
 
     <!-- Buscador -->
     <input
       type="text"
       placeholder="Buscar por nombre o descripción..."
       [(ngModel)]="searchText"
+      style="width: 250px; display: block; margin-left: 0;"
     />
 
     <!-- Tabla -->
@@ -30,12 +32,7 @@
       <tbody>
         <tr *ngFor="let producto of productosPorPagina">
           <td>
-            <img 
-              src="https://www.jgholdings.co.za/wp-content/uploads/2021/09/cropped-cropped-LOGO3.png"
-              alt="logo"
-              width="50"
-              height="50"
-            />
+            <img [src]="producto.logo" alt="logo" width="50" height="50" />
           </td>
           <td>{{ producto.nombre }}</td>
           <td>{{ producto.descripcion }}</td>
@@ -63,49 +60,58 @@
     <!-- Modal -->
     <div class="modal" *ngIf="mostrarModal">
       <div class="modal-content">
+        <!-- Botón para cerrar el modal en forma de "X" -->
+        <button class="close-btn" (click)="cerrarModal()">X</button>
+
         <h3>Agregar nuevo producto</h3>
-        
-        <form class="form-grid">
+
+        <form class="form-grid" (ngSubmit)="enviarProducto()">
           <div class="form-row">
             <div class="form-group">
               <label>ID</label>
-              <input type="number" [(ngModel)]="nuevoProducto.id" name="id">
+              <input type="text" [(ngModel)]="nuevoProducto.id" name="id" required>
             </div>
             <div class="form-group">
               <label>Nombre</label>
-              <input type="text" [(ngModel)]="nuevoProducto.nombre" name="nombre">
+              <input type="text" [(ngModel)]="nuevoProducto.nombre" name="nombre" required>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label>Descripción</label>
-              <input type="text" [(ngModel)]="nuevoProducto.descripcion" name="descripcion">
+              <input type="text" [(ngModel)]="nuevoProducto.descripcion" name="descripcion" required>
             </div>
             <div class="form-group">
               <label>Logo</label>
-              <input type="text" [(ngModel)]="nuevoProducto.logo" name="logo">
+              <input type="text" [(ngModel)]="nuevoProducto.logo" name="logo" required>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label>Fecha liberación</label>
-              <input type="date" [(ngModel)]="nuevoProducto.fechaLiberacion" name="fechaLiberacion">
+              <input type="date" [(ngModel)]="nuevoProducto.fechaLiberacion" name="fechaLiberacion" required>
             </div>
             <div class="form-group">
               <label>Fecha reestructuración</label>
-              <input type="date" [(ngModel)]="nuevoProducto.fechaReestructuracion" name="fechaReestructuracion">
+              <input type="date" [(ngModel)]="nuevoProducto.fechaReestructuracion" name="fechaReestructuracion" required>
             </div>
+          </div>
+
+          <!-- Mostrar errores de validación -->
+          <div *ngIf="errores.length > 0" class="errores">
+            <ul>
+              <li *ngFor="let error of errores" style="color: red;">{{ error }}</li>
+            </ul>
           </div>
 
           <div class="modal-buttons">
             <button type="button" (click)="reiniciarFormulario()">Reiniciar</button>
-            <button type="button" (click)="enviarProducto()">Enviar</button>
+            <button type="submit">Enviar</button>
           </div>
         </form>
       </div>
     </div>
-
   </div>
 </div>
