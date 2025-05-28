@@ -39,6 +39,14 @@
       "descripcion": "prosduct m",
       "fechaLiberacion": "2025-05-11",
       "fechaReestructuracion": "2026-05-11"
+    },
+    {
+      "id": "111",
+      "logo": "https://www.jgholdings.co.za/wp-content/uploads/2021/09/cropped-cropped-LOGO3.png",
+      "nombre": "Producto C",
+      "descripcion": "PRODUCTO C",
+      "fechaLiberacion": "2025-05-28",
+      "fechaReestructuracion": "2026-05-28"
     }
   ]
 }

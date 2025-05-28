@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from '../services/product.service';
 import { Producto } from '../model/product.model';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tabla-productos',
@@ -30,12 +32,23 @@ export class TablaProductosComponent implements OnInit {
     fechaReestructuracion: ''
   };
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.productService.getProductos().subscribe((data: Producto[]) => {
       this.productos = data;
     });
+
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        const url = this.router.url;
+        this.mostrarModal = url.includes('/productos/nuevo');
+      });
   }
 
   get productosFiltrados() {
@@ -51,8 +64,11 @@ export class TablaProductosComponent implements OnInit {
   }
 
   abrirModal() {
-    this.mostrarModal = true;
-    this.errores = [];
+    this.router.navigate(['/productos/nuevo']);
+  }
+
+  cerrarModal() {
+    this.router.navigate(['/productos']);
   }
 
   reiniciarFormulario() {
@@ -67,10 +83,18 @@ export class TablaProductosComponent implements OnInit {
     this.errores = [];
   }
 
+  onFechaLiberacionChange(event: any) {
+    const fecha = new Date(event.target.value);
+    if (!isNaN(fecha.getTime())) {
+      const reestructuracion = new Date(fecha);
+      reestructuracion.setFullYear(reestructuracion.getFullYear() + 1);
+      this.nuevoProducto.fechaReestructuracion = reestructuracion.toISOString().split('T')[0];
+    }
+  }
+
   validarProducto(): boolean {
     this.errores = [];
 
-    // Validación ID
     if (!this.nuevoProducto.id) {
       this.errores.push('El ID es requerido.');
     } else if (this.nuevoProducto.id.length < 3 || this.nuevoProducto.id.length > 10) {
@@ -79,46 +103,24 @@ export class TablaProductosComponent implements OnInit {
       this.errores.push('El ID ya existe.');
     }
 
-    // Nombre
     if (!this.nuevoProducto.nombre || this.nuevoProducto.nombre.length < 5 || this.nuevoProducto.nombre.length > 100) {
       this.errores.push('El nombre debe tener entre 5 y 100 caracteres.');
     }
 
-    // Descripción
     if (!this.nuevoProducto.descripcion || this.nuevoProducto.descripcion.length < 10 || this.nuevoProducto.descripcion.length > 200) {
       this.errores.push('La descripción debe tener entre 10 y 200 caracteres.');
     }
 
-    // Logo
     if (!this.nuevoProducto.logo) {
       this.errores.push('El logo es requerido.');
     }
 
- 
-    const fechaLib = new Date(this.nuevoProducto.fechaLiberacion);
-    const fechaRev = new Date(this.nuevoProducto.fechaReestructuracion);
-    const hoy = new Date();
-    hoy.setHours(0, 0, 0, 0); 
-
-    const manana = new Date(hoy);
-    manana.setDate(hoy.getDate() + 1);  
-    manana.setHours(0, 0, 0, 0);  
-
-    const unAnioDespues = new Date(fechaLib);
-    unAnioDespues.setFullYear(unAnioDespues.getFullYear() + 1);
-    
-    fechaRev.setHours(0, 0, 0, 0);
-
     if (!this.nuevoProducto.fechaLiberacion) {
       this.errores.push('La fecha de liberación es requerida.');
-    } else if (fechaLib < manana) {
-      this.errores.push('La fecha de liberación debe ser igual o mayor a mañana.');
     }
 
     if (!this.nuevoProducto.fechaReestructuracion) {
-      this.errores.push('La fecha de reestructuración es requerida.');
-    } else if (fechaRev.toDateString() !== unAnioDespues.toDateString()) {
-      this.errores.push('La fecha de reestructuración debe ser exactamente un año después de la fecha de liberación.');
+      this.errores.push('La fecha de reestructuración no se ha calculado correctamente.');
     }
 
     return this.errores.length === 0;
@@ -127,15 +129,10 @@ export class TablaProductosComponent implements OnInit {
   enviarProducto() {
     if (this.validarProducto()) {
       this.productService.addProducto(this.nuevoProducto).subscribe(() => {
-        this.mostrarModal = false;
+        this.cerrarModal();
         this.reiniciarFormulario();
-        this.ngOnInit();  
+        this.ngOnInit();
       });
     }
   }
-
-  cerrarModal() {
-    this.mostrarModal = false;  
-  }
-
 }
